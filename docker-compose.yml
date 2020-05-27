@@ -1,7 +1,7 @@
 version: "3.4"
 
 services:
-  fastapi:
+  proxy:
     build:
       context: .
     command: uvicorn main:app --reload --host 0.0.0.0

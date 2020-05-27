@@ -3,10 +3,13 @@
 	"dockerComposeFile": [
 		"../docker-compose.yml"
 	],
-	"service": "fastapi",
+	"service": "proxy",
 	"workspaceFolder": "/app",
 	"settings": { 
         "terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"remoteEnv": {
+		"DOCKER_SHELL": ""
 	},
 	"extensions": [
 		"ms-python.python"
