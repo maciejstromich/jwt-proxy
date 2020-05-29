@@ -3,3 +3,5 @@ uvicorn
 httpx
 pyjwt
 black
+pytest
+requests # oh why pytest... oh why?

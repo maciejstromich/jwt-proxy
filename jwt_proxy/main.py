@@ -1,5 +1,5 @@
 """
-castLabs JWT "proxy" implementation using fastapi 
+JWT proxy implementation using fastapi
 
 Basic requirements:
 - appends JWT token in x-my-jwt header
@@ -9,17 +9,17 @@ Basic requirements:
 Bonus points:
 - async
 - provides /status with time since startup in secs and number of processed requests
-
-TODO:
 - tests
 """
+import os
+
+from datetime import datetime, timedelta
+from uuid import uuid4
+
+import jwt
+import httpx
 
 from fastapi import FastAPI, Request, Response
-from datetime import datetime, timedelta
-import os
-import httpx
-from uuid import uuid4
-import jwt
 
 app = FastAPI()
 
