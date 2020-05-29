@@ -43,11 +43,21 @@ async def status():
 async def root(request: Request):
     global REQUESTS
     REQUESTS += 1
-    data = {"iat": datetime.utcnow(), "jti": str(uuid4().hex)}
+
+    data = {
+        "iat": datetime.utcnow(),
+        "jti": str(uuid4().hex),
+        "user": "username",
+        "date": datetime.utcnow().strftime("%Y-%m-%d"),
+    }
 
     j = jwt.encode(data, JWT_SECRET, algorithm="HS512")
 
     async with httpx.AsyncClient() as client:
-        resp = await client.post(POST_URL, data=await request.json(), headers={"x-my-jwt": j})
+        resp = await client.post(
+            POST_URL,
+            data=await request.json(),
+            headers={"x-my-jwt": j, "content-type": request.headers["content-type"]},
+        )
 
-    return Response(status_code=resp.status_code, content=resp.content)
+    return Response(status_code=resp.status_code, content=resp.content, headers=resp.headers)

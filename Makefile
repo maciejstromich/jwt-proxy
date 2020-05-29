@@ -6,13 +6,16 @@ run:
 	$(DOCKER_SHELL)
 
 
-samlple_command:
-	curl -v --data '{"user": "username", "date": "todays_date"}' -x POST http://localhost:8000/
+sample_command:
+	curl -v --data '{"key1": "value", "key2": "value"}' -H "Content-Type: application/json" -X POST http://localhost:8000/
+
+status:
+	curl -v http://localhost:8000/status
 
 build: 
 	$(DOCKER_COMPOSE) build
 
 format:
-	$(DOCKER_SHELL) black -t py38 -l 120 
+	$(DOCKER_SHELL) /usr/local/bin/black -t py38 -l 120 . 
 
 
